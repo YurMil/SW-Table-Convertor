@@ -37,6 +37,7 @@ Write-Host "Compiling SWTableConvertor..."
     /r:System.IO.Compression.dll `
     /r:System.IO.Compression.FileSystem.dll `
     /r:System.Xml.dll `
+    /r:Microsoft.CSharp.dll `
     "/r:$swSldWorks" `
     "/r:$swConst" `
     $sources

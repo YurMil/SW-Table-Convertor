@@ -1,0 +1,24 @@
+name: MSBuild CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore NuGet packages (if any)
+      run: nuget restore SWTableConvertor.csproj || echo "No NuGet packages to restore"
+
+    - name: Build Solution
+      run: msbuild SWTableConvertor.csproj /p:Configuration=Release /p:Platform="Any CPU"
